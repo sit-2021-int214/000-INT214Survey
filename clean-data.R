@@ -5,7 +5,7 @@ library(assertive)
 library(readr)
 
 # Step 1: Load data
-survey214 <- read.csv("https://raw.githubusercontent.com/safesit23/INT214-Statistics/main/datasets/Survey_INT214.csv")
+survey214 <- read.csv("https://raw.githubusercontent.com/sit-2021-int214/000-INT214Survey/main/SurveyINT214_original.csv")
 # Step 2: Change to tibble
 survey214 <- as_tibble(survey214)
 glimpse(survey214)
