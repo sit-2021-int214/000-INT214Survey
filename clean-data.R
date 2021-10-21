@@ -55,3 +55,21 @@ summary(survey214$sec)
 
 ##Checkpoint 1
 write_csv(survey214,file = "../datasets/survey214_v1.csv")
+
+# Cleaning genres: Handling string to list
+music_genres <- strsplit(survey214$music_genres,",")
+lapply(music_genres, gsub, pattern = " ", replacement = "")
+
+new_survey214 <- survey214 %>% mutate(
+  music_genres = strsplit(music_genres,","),
+  music_genres = lapply(music_genres, gsub, pattern = " ", replacement = ""),
+  music_genres = lapply(music_genres, tolower)
+  )
+
+glimpse(new_survey214)
+
+## Explore genres
+new_survey214 %>% select(music_genres) %>% unnest(music_genres)
+
+new_survey214 %>% select(music_genres) %>% unnest(music_genres) %>% 
+  count(music_genres) %>% arrange(desc(n))
